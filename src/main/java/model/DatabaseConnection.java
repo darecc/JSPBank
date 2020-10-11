@@ -14,7 +14,7 @@ public class DatabaseConnection {
         Connection conn = null;
         try {
             String dbDriver = "com.mysql.jdbc.Driver";
-            String dbURL = "jdbc:mysql://sqlhosting5.dt.pl:3306/" + base + "?serverTimezone=UTC&allowPublicKeyRetrieval=true";
+            String dbURL = "jdbc:mysql://sqlhosting5.dt.pl:3306/" + base + "?serverTimezone=UTC&allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=utf8";
             System.out.println(dbURL);
             Class.forName(dbDriver);
             // webserwer.pl user: dceglarek_bank password: sdauser

@@ -5,10 +5,11 @@
 <head>
   <meta charset="UTF-8">
   <link href="styl.css" rel="stylesheet"/>
-  <title>Log in to our shop</title>
+  <title>Log in to ABC Bank</title>
 </head>
 <body>
 <%
+  request.setCharacterEncoding("UTF-8");
   Object userMsg = request.getAttribute("userMsg");
   String userMessage = "";
   if (userMsg != null)

@@ -23,6 +23,7 @@ public class waliduj extends HttpServlet {
     public waliduj() {
     }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         String login    = request.getParameter("user");
         String password = request.getParameter("password");
         String base = request.getParameter("base");
