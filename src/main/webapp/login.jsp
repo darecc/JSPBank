@@ -16,6 +16,9 @@
   Object login = "";
   if(request.getParameter("user") != null)
     login = request.getAttribute("user");
+  if (session.getAttribute("user") !=null)
+    login = session.getAttribute("user");
+  System.out.println("do logowania: " + login);
   String passwordMessage = "";
   Object passwordMsg = request.getAttribute("passwordMsg");
   System.out.println("passwordMsg:" + passwordMsg);
@@ -32,6 +35,7 @@
   <input type="password" name="password" class="textBox" /><br/><br/>
   <p style="color:red;"><%=passwordMessage%></p>
   <input class=\"button\" type="submit" value="log in to ABC Bank">
+  <input type="hidden" id="base" name="base" value="dceglarek_bank">
 </form>
 <%@include file="footer.jsp"%>
 </body>

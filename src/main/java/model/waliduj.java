@@ -25,15 +25,12 @@ public class waliduj extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String login    = request.getParameter("user");
         String password = request.getParameter("password");
-        System.out.println("login@" + login + "@");
-        System.out.println("password@" + password + "@");
+        String base = request.getParameter("base");
         String md5 = makeMD5(password);
         System.out.println("Login: " + login);
         System.out.println("Password: " + password);
         System.out.println("MD5 = " + md5);
-        //String dbUSER = "root";
-        //String dbPASS = "admin";
-        String role = checkIfUserExists(login, md5);
+        String role = checkIfUserExists(base, login, md5);
         String page = "";
         if (role == "no") {
             page = "createAccount.jsp";
@@ -78,13 +75,13 @@ public class waliduj extends HttpServlet {
             return null;
         }
     }
-    private String checkIfUserExists(String login, String md5) {
+    private String checkIfUserExists(String base, String login, String md5) {
         Statement stmt = null;
         ResultSet rs = null;
         String role = "no";
         boolean jest = false;
         try {
-            Connection conn = DatabaseConnection.initializeDatabase("bank");
+            Connection conn = DatabaseConnection.initializeDatabase(base);
             if (conn == null) {
                 System.out.println("Nie można połączyć się z bazą danych. ");
             }

@@ -26,6 +26,7 @@ public class baza extends HttpServlet {
         String password = "sdauser";
         login = request.getParameter("user");
         password = request.getParameter("password");
+        String base = request.getParameter("base");
         String md5 = makeMD5(password);
         //md5 = "darek1";
         String USER = "";
@@ -38,7 +39,7 @@ public class baza extends HttpServlet {
         Cookie[] ciastka = request.getCookies();
         Cookie toCiastko  = null;
         try {
-            Connection conn = DatabaseConnection.initializeDatabase("bank");
+            Connection conn = DatabaseConnection.initializeDatabase(base);
             System.out.println("po conn");
             stmt = conn.createStatement();
             System.out.println("po stmt");

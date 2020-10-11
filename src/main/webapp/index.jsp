@@ -4,10 +4,13 @@
     <title>Witamy w ABC Banku</title>
     <meta charset="utf-8"/>
   </head>
-  <body>
+<body>
+<%
+  application.setAttribute("base", "dceglarek_bank");
+%>
   <p>Witamy w ABC Banku</p>
 <p>Mamy naprawdę świetną ofertę dla każdego</p>
 <p><a href="login.jsp">Zaloguj się</a></p>
-<p><a href="createAccount.jsp">Zaloguj się</a></p>
+<p><a href="createAccount.jsp">Utwórz konto </a></p>
   </body>
 </html>
