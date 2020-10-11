@@ -24,7 +24,7 @@
 %>
 <c:set var="loginValue" value="<%= login%>"/>
 <%@include file="header.jsp"%>
-<form method="post" action="waliduj.jsp">
+<form method="post" action="waliduj">
   Input login:<br/>
   <input type="text" name="user" class="textBox" value="${loginValue}"/><br />
   <p style="color: red;"><%=userMessage%></p>

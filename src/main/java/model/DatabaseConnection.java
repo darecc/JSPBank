@@ -11,9 +11,11 @@ public class DatabaseConnection {
         Connection conn = null;
         try {
             String dbDriver = "com.mysql.jdbc.Driver";
-            String dbURL = "jdbc:mysql://webserwer.pl:3306/" + base + "?serverTimezone=UTC&allowPublicKeyRetrieval=true";
+            String dbURL = "jdbc:mysql://localhost:3306/" + base + "?serverTimezone=UTC&allowPublicKeyRetrieval=true";
+            System.out.println(dbURL);
             Class.forName(dbDriver);
-            conn = DriverManager.getConnection(dbURL, "dceglarek_bank", "sdauser");
+            // webserwer.pl user: dceglarek_bank password: sdauser
+            conn = DriverManager.getConnection(dbURL, "root", "admin");
         }
         catch(SQLException se) {
             System.out.println("Database connection:" + se.getMessage());

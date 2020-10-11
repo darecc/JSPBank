@@ -22,10 +22,12 @@ public class baza extends HttpServlet {
     public baza() {
     }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String login = "sdauser";
-        String password = "MySQL2020";
+        String login = "dceglarek_bank";
+        String password = "sdauser";
+        login = request.getParameter("user");
+        password = request.getParameter("password");
         String md5 = makeMD5(password);
-        md5 = "darek1";
+        //md5 = "darek1";
         String USER = "";
         String PASS = "";
         Statement stmt = null;
@@ -36,11 +38,11 @@ public class baza extends HttpServlet {
         Cookie[] ciastka = request.getCookies();
         Cookie toCiastko  = null;
         try {
-            Connection conn = DatabaseConnection.initializeDatabase("bank", USER, PASS);
+            Connection conn = DatabaseConnection.initializeDatabase("bank");
             System.out.println("po conn");
             stmt = conn.createStatement();
             System.out.println("po stmt");
-            String sql = "SELECT * FROM users where login = '" + login + "' AND md5='" + md5 + "';";
+            String sql = "SELECT * FROM klienci where login = '" + login + "' AND password='" + md5 + "';";
             System.out.println("sql=@" + sql + "@");
             rs = stmt.executeQuery(sql);
             System.out.println("result set: " + rs.first());

@@ -28,8 +28,11 @@ public class waliduj extends HttpServlet {
         System.out.println("login@" + login + "@");
         System.out.println("password@" + password + "@");
         String md5 = makeMD5(password);
-        String dbUSER = "root";
-        String dbPASS = "admin";
+        System.out.println("Login: " + login);
+        System.out.println("Password: " + password);
+        System.out.println("MD5 = " + md5);
+        //String dbUSER = "root";
+        //String dbPASS = "admin";
         String role = checkIfUserExists(login, md5);
         String page = "";
         if (role == "no") {
@@ -40,17 +43,13 @@ public class waliduj extends HttpServlet {
             if (role.equals("employee")) {
                 HttpSession session = request.getSession();
                 session.setAttribute("user", login);
-                session.setAttribute("dbUSER", dbUSER);
-                session.setAttribute("dbPASS", dbPASS);
                 response.sendRedirect("changeOrdersState.jsp");
             }
             // pobranie ciasteczka o kluczu = login
             // utworzenie zmiennych sesyjnych dla user (login)
             HttpSession session = request.getSession();
             session.setAttribute("user", login);
-            session.setAttribute("dbUSER", dbUSER);
-            session.setAttribute("dbPASS", dbPASS);
-            page = "products.jsp";
+            page = "client.jsp";
         }
         response.sendRedirect(page);
     }
@@ -85,12 +84,12 @@ public class waliduj extends HttpServlet {
         String role = "no";
         boolean jest = false;
         try {
-            Connection conn = DatabaseConnection.initializeDatabase("dceglarek_bank");
+            Connection conn = DatabaseConnection.initializeDatabase("bank");
             if (conn == null) {
                 System.out.println("Nie można połączyć się z bazą danych. ");
             }
             stmt = conn.createStatement();
-            String sql = "SELECT * FROM users where login = '" + login + "' AND md5='" + md5 + "';";
+            String sql = "SELECT * FROM klienci where login = '" + login + "' AND password='" + md5 + "';";
             rs = stmt.executeQuery(sql);
             jest = rs.first();
             role = rs.getString("role");
